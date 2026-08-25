@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyTrack</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>StudyTrack</h1>
+        <p>Your personal productivity dashboard</p>
+    </header>
+
+    <main>
+
+        <section class="dashboard">
+
+            <div class="card">
+                <h2>📚 Study Hours</h2>
+                <p id="study-hours">0 hrs</p>
+            </div>
+
+            <div class="card">
+                <h2>✅ Tasks</h2>
+                <p id="task-count">0</p>
+            </div>
+
+            <div class="card">
+                <h2>💰 Expenses</h2>
+                <p id="expenses">₹0</p>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Goal</h2>
+                <p id="goal">0%</p>
+            </div>
+
+        </section>
+
+<section class="tasks">
+
+    <h2>Today's Tasks</h2>
+
+    <div class="task-input">
+        <input
+            type="text"
+            id="new-task"
+            placeholder="Enter a new task..."
+        >
+
+        <button id="add-task">Add Task</button>
+    </div>
+
+    <ul id="task-list">
+        <li>Complete Mathematics assignment</li>
+        <li>Practice Java</li>
+        <li>Revise Physics</li>
+    </ul>
+
+</section>
+
+    </main>
+
+    <footer>
+        <p>StudyTrack © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
