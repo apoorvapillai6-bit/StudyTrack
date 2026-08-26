@@ -6,7 +6,9 @@ const taskCount = document.getElementById("task-count");
 const taskList = document.getElementById("task-list");
 const newTaskInput = document.getElementById("new-task");
 const addTaskButton = document.getElementById("add-task");
-
+const studyHours = document.getElementById("study-hours");
+const studyTimeInput = document.getElementById("study-time");
+const addStudyTimeButton = document.getElementById("add-study-time");
 
 // ================================
 // Save tasks to localStorage
@@ -21,7 +23,7 @@ function saveTasks() {
     for (let task of taskElements) {
 
         tasks.push({
-            text: task.textContent,
+            text: task.querySelector("span").textContent,
             completed: task.classList.contains("completed")
         });
 
@@ -203,3 +205,39 @@ loadTasks();
 // ================================
 
 updateTaskCount();
+// ================================
+// Study Hours Tracker
+// ================================
+
+function addStudyTime() {
+
+    const hours = parseFloat(studyTimeInput.value);
+
+    if (isNaN(hours) || hours <= 0) {
+        return;
+    }
+
+    const currentHours = parseFloat(
+        studyHours.textContent.replace(" hrs", "")
+    );
+
+    const totalHours = currentHours + hours;
+
+    studyHours.textContent = totalHours + " hrs";
+
+localStorage.setItem("studytrackStudyHours", totalHours);
+
+studyTimeInput.value = "";
+}
+function loadStudyHours() {
+
+    const savedHours = localStorage.getItem("studytrackStudyHours");
+
+    if (savedHours) {
+        studyHours.textContent = savedHours + " hrs";
+    }
+}
+
+loadStudyHours();
+
+addStudyTimeButton.addEventListener("click", addStudyTime);
