@@ -9,10 +9,72 @@ const addTaskButton = document.getElementById("add-task");
 
 
 // ================================
+// Save tasks to localStorage
+// ================================
+
+function saveTasks() {
+
+    const tasks = [];
+
+    const taskElements = taskList.getElementsByTagName("li");
+
+    for (let task of taskElements) {
+
+        tasks.push({
+            text: task.textContent,
+            completed: task.classList.contains("completed")
+        });
+
+    }
+
+    localStorage.setItem("studytrackTasks", JSON.stringify(tasks));
+}
+
+
+// ================================
+// Load tasks from localStorage
+// ================================
+
+function loadTasks() {
+
+    const savedTasks = localStorage.getItem("studytrackTasks");
+
+    if (!savedTasks) {
+        return;
+    }
+
+    // Remove the tasks already written in HTML
+    taskList.innerHTML = "";
+
+    const tasks = JSON.parse(savedTasks);
+    
+    for (let taskData of tasks) {
+
+        const newTask = document.createElement("li");
+
+        newTask.textContent = taskData.text;
+
+        if (taskData.completed) {
+            newTask.classList.add("completed");
+        }
+
+        newTask.addEventListener("click", function () {
+
+            completeTask(newTask);
+
+        });
+
+        taskList.appendChild(newTask);
+    }
+}
+
+
+// ================================
 // Update task count
 // ================================
 
 function updateTaskCount() {
+
     const tasks = taskList.getElementsByTagName("li");
 
     taskCount.textContent = tasks.length;
@@ -24,7 +86,10 @@ function updateTaskCount() {
 // ================================
 
 function completeTask(task) {
+
     task.classList.toggle("completed");
+
+    saveTasks();
 }
 
 
@@ -46,7 +111,9 @@ function addTask() {
 
     // Allow the new task to be completed
     newTask.addEventListener("click", function () {
+
         completeTask(newTask);
+
     });
 
     taskList.appendChild(newTask);
@@ -54,6 +121,8 @@ function addTask() {
     newTaskInput.value = "";
 
     updateTaskCount();
+
+    saveTasks();
 }
 
 
@@ -66,7 +135,9 @@ const existingTasks = taskList.getElementsByTagName("li");
 for (let task of existingTasks) {
 
     task.addEventListener("click", function () {
+
         completeTask(task);
+
     });
 
 }
@@ -77,6 +148,13 @@ for (let task of existingTasks) {
 // ================================
 
 addTaskButton.addEventListener("click", addTask);
+
+
+// ================================
+// Load saved tasks
+// ================================
+
+loadTasks();
 
 
 // ================================
