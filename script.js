@@ -34,7 +34,6 @@ function saveTasks() {
 // ================================
 // Load tasks from localStorage
 // ================================
-
 function loadTasks() {
 
     const savedTasks = localStorage.getItem("studytrackTasks");
@@ -47,22 +46,44 @@ function loadTasks() {
     taskList.innerHTML = "";
 
     const tasks = JSON.parse(savedTasks);
-    
+
     for (let taskData of tasks) {
 
         const newTask = document.createElement("li");
 
-        newTask.textContent = taskData.text;
+        // Create task text
+        const taskText = document.createElement("span");
+        taskText.textContent = taskData.text;
 
-        if (taskData.completed) {
-            newTask.classList.add("completed");
-        }
+        // Create delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "🗑️";
 
+        // Delete the task
+        deleteButton.addEventListener("click", function (event) {
+
+            event.stopPropagation();
+
+            newTask.remove();
+
+            updateTaskCount();
+
+            saveTasks();
+        });
+
+        newTask.appendChild(taskText);
+        newTask.appendChild(deleteButton);
+
+        // Complete the task
         newTask.addEventListener("click", function () {
 
             completeTask(newTask);
 
         });
+
+        if (taskData.completed) {
+            newTask.classList.add("completed");
+        }
 
         taskList.appendChild(newTask);
     }
@@ -107,9 +128,30 @@ function addTask() {
 
     const newTask = document.createElement("li");
 
-    newTask.textContent = taskText;
+    // Create task text
+    const taskTextElement = document.createElement("span");
+    taskTextElement.textContent = taskText;
 
-    // Allow the new task to be completed
+    // Create delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "🗑️";
+
+    // Delete the task
+    deleteButton.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        newTask.remove();
+
+        updateTaskCount();
+
+        saveTasks();
+    });
+
+    newTask.appendChild(taskTextElement);
+    newTask.appendChild(deleteButton);
+
+    // Complete the task
     newTask.addEventListener("click", function () {
 
         completeTask(newTask);
@@ -124,7 +166,6 @@ function addTask() {
 
     saveTasks();
 }
-
 
 // ================================
 // Add click events to existing tasks
