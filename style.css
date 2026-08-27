@@ -8,6 +8,11 @@
     box-sizing: border-box;
 }
 
+
+/* =========================
+   Body
+   ========================= */
+
 body {
     font-family: Arial, sans-serif;
     background: #f4f7fb;
@@ -15,7 +20,10 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
+
+/* =========================
+   Header
+   ========================= */
 
 header {
     background: #1e3a8a;
@@ -34,7 +42,10 @@ header p {
     opacity: 0.9;
 }
 
-/* Main content */
+
+/* =========================
+   Main Content
+   ========================= */
 
 main {
     width: 90%;
@@ -42,7 +53,10 @@ main {
     margin: 40px auto;
 }
 
-/* Dashboard cards */
+
+/* =========================
+   Dashboard Cards
+   ========================= */
 
 .dashboard {
     display: grid;
@@ -73,8 +87,15 @@ main {
     font-weight: bold;
 }
 
-/* Tasks section */
 
+/* =========================
+   Tracker Sections
+   ========================= */
+
+.study-tracker,
+.expense-tracker,
+.goal-tracker,
+.statistics,
 .tasks {
     background: white;
     margin-top: 30px;
@@ -83,50 +104,40 @@ main {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+
+/* =========================
+   Section Headings
+   ========================= */
+
+.study-tracker h2,
+.expense-tracker h2,
+.goal-tracker h2,
+.statistics h2,
 .tasks h2 {
     margin-bottom: 20px;
 }
 
-.tasks ul {
-    list-style: none;
-}
 
-.tasks li {
-    padding: 12px;
-    margin-bottom: 10px;
-    background: #f1f5f9;
-    border-radius: 8px;
-}
+/* =========================
+   Input Areas
+   ========================= */
 
-/* Footer */
-
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #64748b;
-}
-
-/* Responsive design */
-
-@media (max-width: 800px) {
-    .dashboard {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 500px) {
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
-}
-/* Task input */
-
+.study-input,
+.expense-input,
+.goal-input,
 .task-input {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
+
+/* =========================
+   Inputs
+   ========================= */
+
+.study-input input,
+.expense-input input,
+.goal-input input,
 .task-input input {
     flex: 1;
     padding: 12px;
@@ -135,6 +146,14 @@ footer {
     font-size: 16px;
 }
 
+
+/* =========================
+   Buttons
+   ========================= */
+
+.study-input button,
+.expense-input button,
+.goal-input button,
 .task-input button {
     padding: 12px 20px;
     border: none;
@@ -143,14 +162,125 @@ footer {
     color: white;
     font-size: 16px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
+.study-input button:hover,
+.expense-input button:hover,
+.goal-input button:hover,
 .task-input button:hover {
     background: #172554;
 }
-/* Completed task */
 
-.tasks li.completed {
+
+/* =========================
+   Tasks
+   ========================= */
+
+.tasks ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.tasks li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px;
+    margin-bottom: 10px;
+
+    background: #f1f5f9;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+/* Completed Task */
+
+.tasks li.completed span {
     text-decoration: line-through;
     opacity: 0.5;
+}
+
+
+/* Delete Button */
+
+.tasks li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+/* =========================
+   Statistics
+   ========================= */
+
+.statistics p {
+    background: #f1f5f9;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+}
+
+.statistics span {
+    font-weight: bold;
+}
+
+
+/* =========================
+   Footer
+   ========================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #64748b;
+}
+
+
+/* =========================
+   Responsive Design
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    main {
+        width: 92%;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .study-input,
+    .expense-input,
+    .goal-input,
+    .task-input {
+        flex-direction: column;
+    }
+
+    .study-input button,
+    .expense-input button,
+    .goal-input button,
+    .task-input button {
+        width: 100%;
+    }
 }

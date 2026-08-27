@@ -19,6 +19,7 @@
 
     <main>
 
+        <!-- Dashboard Cards -->
         <section class="dashboard">
 
             <div class="card">
@@ -43,11 +44,14 @@
 
         </section>
 
+
+        <!-- Study Hours Tracker -->
         <section class="study-tracker">
 
             <h2>📚 Track Study Time</h2>
 
             <div class="study-input">
+
                 <input
                     type="number"
                     id="study-time"
@@ -56,74 +60,126 @@
                     step="0.5"
                 >
 
-                <button id="add-study-time">Add Study Time</button>
+                <button id="add-study-time">
+                    Add Study Time
+                </button>
+
             </div>
 
         </section>
-<section class="expense-tracker">
 
-    <h2>💰 Track Expenses</h2>
 
-    <div class="expense-input">
+        <!-- Expense Tracker -->
+        <section class="expense-tracker">
 
-        <input
-            type="number"
-            id="expense-amount"
-            placeholder="Enter expense amount..."
-            min="0"
-        >
+            <h2>💰 Track Expenses</h2>
 
-        <button id="add-expense">Add Expense</button>
+            <div class="expense-input">
 
-    </div>
+                <input
+                    type="number"
+                    id="expense-amount"
+                    placeholder="Enter expense amount..."
+                    min="0"
+                >
 
-</section>
-<section class="goal-tracker">
+                <button id="add-expense">
+                    Add Expense
+                </button>
 
-    <h2>🎯 Track Goal Progress</h2>
+            </div>
 
-    <div class="goal-input">
+        </section>
 
-        <input
-            type="number"
-            id="goal-progress"
-            placeholder="Enter progress percentage..."
-            min="0"
-            max="100"
-        >
 
-        <button id="update-goal">Update Goal</button>
+        <!-- Goal Tracker -->
+        <section class="goal-tracker">
 
-    </div>
+            <h2>🎯 Track Goal Progress</h2>
 
-</section>
+            <div class="goal-input">
+
+                <input
+                    type="number"
+                    id="goal-progress"
+                    placeholder="Enter progress percentage..."
+                    min="0"
+                    max="100"
+                >
+
+                <button id="update-goal">
+                    Update Goal
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Tasks -->
         <section class="tasks">
 
-    <h2>Today's Tasks</h2>
+            <h2>Today's Tasks</h2>
 
-    <div class="task-input">
-        <input
-            type="text"
-            id="new-task"
-            placeholder="Enter a new task..."
-        >
+            <div class="task-input">
 
-        <button id="add-task">Add Task</button>
-    </div>
+                <input
+                    type="text"
+                    id="new-task"
+                    placeholder="Enter a new task..."
+                >
 
-    <ul id="task-list">
-        <li>Complete Mathematics assignment</li>
-        <li>Practice Java</li>
-        <li>Revise Physics</li>
-    </ul>
+                <button id="add-task">
+                    Add Task
+                </button>
 
-</section>
+            </div>
+
+            <ul id="task-list">
+
+                <li>Complete Mathematics assignment</li>
+                <li>Practice Java</li>
+                <li>Revise Physics</li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- Statistics -->
+        <section class="statistics">
+
+            <h2>📊 Statistics</h2>
+
+            <p>
+                📚 Study Hours:
+                <span id="stat-study-hours">0 hrs</span>
+            </p>
+
+            <p>
+                ✅ Total Tasks:
+                <span id="stat-tasks">0</span>
+            </p>
+
+            <p>
+                💰 Total Expenses:
+                <span id="stat-expenses">₹0</span>
+            </p>
+
+            <p>
+                🎯 Goal Progress:
+                <span id="stat-goal">0%</span>
+            </p>
+
+        </section>
 
     </main>
+
 
     <footer>
         <p>StudyTrack © 2026</p>
     </footer>
+
 
     <script src="script.js"></script>
 
