@@ -12,6 +12,9 @@ const addStudyTimeButton = document.getElementById("add-study-time");
 const expenses = document.getElementById("expenses");
 const expenseAmountInput = document.getElementById("expense-amount");
 const addExpenseButton = document.getElementById("add-expense");
+const goal = document.getElementById("goal");
+const goalProgressInput = document.getElementById("goal-progress");
+const updateGoalButton = document.getElementById("update-goal");
 
 // ================================
 // Save tasks to localStorage
@@ -280,3 +283,37 @@ function loadExpenses() {
 
 loadExpenses();
 addExpenseButton.addEventListener("click", addExpense);
+// ================================
+// Goal Progress Tracker
+// ================================
+
+function updateGoal() {
+
+    const progress = parseFloat(goalProgressInput.value);
+
+    if (isNaN(progress) || progress < 0 || progress > 100) {
+        return;
+    }
+
+    goal.textContent = progress + "%";
+
+    // Save goal progress
+    localStorage.setItem("studytrackGoal", progress);
+
+    goalProgressInput.value = "";
+}
+
+
+function loadGoal() {
+
+    const savedGoal = localStorage.getItem("studytrackGoal");
+
+    if (savedGoal !== null) {
+        goal.textContent = savedGoal + "%";
+    }
+}
+
+
+loadGoal();
+
+updateGoalButton.addEventListener("click", updateGoal);
