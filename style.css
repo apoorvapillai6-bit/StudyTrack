@@ -1,6 +1,6 @@
-/* =========================
-   StudyTrack - Main Styles
-   ========================= */
+/* ===================================
+   StudyTrack - Modern Aesthetic UI
+   =================================== */
 
 * {
     margin: 0;
@@ -8,55 +8,69 @@
     box-sizing: border-box;
 }
 
-
-/* =========================
-   Body
-   ========================= */
-
 body {
     font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
+    background: linear-gradient(135deg, #f5f3ff, #eef2ff, #f8fafc);
+    color: #1e293b;
     min-height: 100vh;
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-
-/* =========================
-   Header
-   ========================= */
+/* Header */
 
 header {
-    background: #1e3a8a;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
-    padding: 30px;
-    text-align: center;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25);
+}
+
+.header-content {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 header h1 {
-    font-size: 36px;
+    font-size: 42px;
     margin-bottom: 8px;
 }
 
 header p {
-    font-size: 16px;
+    font-size: 17px;
     opacity: 0.9;
 }
 
+/* Theme Button */
 
-/* =========================
-   Main Content
-   ========================= */
+#theme-toggle {
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 22px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Main */
 
 main {
     width: 90%;
     max-width: 1100px;
-    margin: 40px auto;
+    margin: 45px auto;
 }
 
-
-/* =========================
-   Dashboard Cards
-   ========================= */
+/* Dashboard */
 
 .dashboard {
     display: grid;
@@ -65,205 +79,280 @@ main {
 }
 
 .card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 28px 20px;
+    border-radius: 20px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(99, 102, 241, 0.18);
 }
 
 .card h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 12px;
 }
 
 .card p {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
+    color: #4f46e5;
 }
 
+/* Progress Bar */
 
-/* =========================
-   Tracker Sections
-   ========================= */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transition: width 0.6s ease;
+}
+
+/* Sections */
 
 .study-tracker,
 .expense-tracker,
 .goal-tracker,
-.statistics,
-.tasks {
-    background: white;
+.tasks,
+.statistics {
+    background: rgba(255, 255, 255, 0.92);
     margin-top: 30px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 }
-
-
-/* =========================
-   Section Headings
-   ========================= */
 
 .study-tracker h2,
 .expense-tracker h2,
 .goal-tracker h2,
-.statistics h2,
-.tasks h2 {
-    margin-bottom: 20px;
+.tasks h2,
+.statistics h2 {
+    color: #312e81;
+    font-size: 22px;
+    margin-bottom: 22px;
 }
 
-
-/* =========================
-   Input Areas
-   ========================= */
+/* Inputs */
 
 .study-input,
 .expense-input,
 .goal-input,
 .task-input {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
-
-
-/* =========================
-   Inputs
-   ========================= */
 
 .study-input input,
 .expense-input input,
 .goal-input input,
 .task-input input {
     flex: 1;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid #d8dce8;
+    border-radius: 12px;
+    outline: none;
+    background: #f8fafc;
 }
 
+.study-input input:focus,
+.expense-input input:focus,
+.goal-input input:focus,
+.task-input input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    background: white;
+}
 
-/* =========================
-   Buttons
-   ========================= */
+/* Buttons */
 
 .study-input button,
 .expense-input button,
 .goal-input button,
 .task-input button {
-    padding: 12px 20px;
+    padding: 13px 22px;
     border: none;
-    border-radius: 8px;
-    background: #1e3a8a;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .study-input button:hover,
 .expense-input button:hover,
 .goal-input button:hover,
 .task-input button:hover {
-    background: #172554;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
 }
 
-
-/* =========================
-   Tasks
-   ========================= */
+/* Tasks */
 
 .tasks ul {
     list-style: none;
-    margin-top: 20px;
+    margin-top: 22px;
 }
 
 .tasks li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 12px;
-    margin-bottom: 10px;
-
-    background: #f1f5f9;
-
-    border-radius: 8px;
-
+    padding: 15px 18px;
+    margin-bottom: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
     cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
-
-/* Completed Task */
+.tasks li:hover {
+    transform: translateX(5px);
+    background: #eef2ff;
+}
 
 .tasks li.completed span {
     text-decoration: line-through;
-    opacity: 0.5;
+    color: #94a3b8;
+    opacity: 0.7;
 }
-
-
-/* Delete Button */
 
 .tasks li button {
-    background: none;
+    background: #fee2e2;
     border: none;
+    border-radius: 8px;
+    padding: 6px 9px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
 }
 
-
-/* =========================
-   Statistics
-   ========================= */
+/* Statistics */
 
 .statistics p {
-    background: #f1f5f9;
-
-    padding: 12px;
-
-    margin-bottom: 10px;
-
-    border-radius: 8px;
-
-    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #f8fafc, #eef2ff);
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
 }
 
 .statistics span {
     font-weight: bold;
+    color: #4f46e5;
 }
 
-
-/* =========================
-   Footer
-   ========================= */
+/* Footer */
 
 footer {
     text-align: center;
-    padding: 25px;
+    padding: 30px;
     color: #64748b;
 }
 
-
 /* =========================
-   Responsive Design
+   Dark Mode
    ========================= */
 
-@media (max-width: 800px) {
+body.dark-mode {
+    background: #111827;
+    color: #e5e7eb;
+}
 
+.dark-mode .card,
+.dark-mode .study-tracker,
+.dark-mode .expense-tracker,
+.dark-mode .goal-tracker,
+.dark-mode .tasks,
+.dark-mode .statistics {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+.dark-mode .card h2 {
+    color: #cbd5e1;
+}
+
+.dark-mode .card p,
+.dark-mode .statistics span {
+    color: #a5b4fc;
+}
+
+.dark-mode .study-tracker h2,
+.dark-mode .expense-tracker h2,
+.dark-mode .goal-tracker h2,
+.dark-mode .tasks h2,
+.dark-mode .statistics h2 {
+    color: #c4b5fd;
+}
+
+.dark-mode input {
+    background: #111827 !important;
+    color: white;
+    border-color: #374151 !important;
+}
+
+.dark-mode .tasks li,
+.dark-mode .statistics p {
+    background: #111827;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+.dark-mode .tasks li:hover {
+    background: #312e81;
+}
+
+.dark-mode footer {
+    color: #94a3b8;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
     .dashboard {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-
 @media (max-width: 600px) {
+
+    header {
+        padding: 30px 20px;
+    }
+
+    .header-content {
+        align-items: flex-start;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
 
     main {
         width: 92%;
+        margin: 30px auto;
     }
 
     .dashboard {

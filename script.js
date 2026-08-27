@@ -24,6 +24,15 @@ const goal = document.getElementById("goal");
 const goalProgressInput = document.getElementById("goal-progress");
 const updateGoalButton = document.getElementById("update-goal");
 
+const goalBar = document.getElementById("goal-bar");
+
+
+// ================================
+// Dark Mode Elements
+// ================================
+
+const themeToggle = document.getElementById("theme-toggle");
+
 
 // ================================
 // Statistics Elements
@@ -42,11 +51,8 @@ const statGoal = document.getElementById("stat-goal");
 function updateStatistics() {
 
     statStudyHours.textContent = studyHours.textContent;
-
     statTasks.textContent = taskCount.textContent;
-
     statExpenses.textContent = expenses.textContent;
-
     statGoal.textContent = goal.textContent;
 }
 
@@ -57,9 +63,8 @@ function updateStatistics() {
 
 function updateTaskCount() {
 
-    const tasks = taskList.getElementsByTagName("li");
-
-    taskCount.textContent = tasks.length;
+    taskCount.textContent =
+        taskList.getElementsByTagName("li").length;
 }
 
 
@@ -71,21 +76,20 @@ function saveTasks() {
 
     const tasks = [];
 
-    const taskElements = taskList.getElementsByTagName("li");
+    const taskElements =
+        taskList.getElementsByTagName("li");
 
     for (let task of taskElements) {
 
-        const taskText = task.querySelector("span");
+        const taskText =
+            task.querySelector("span");
 
         tasks.push({
-
             text: taskText
                 ? taskText.textContent
                 : task.textContent,
-
             completed:
                 task.classList.contains("completed")
-
         });
     }
 
@@ -102,10 +106,8 @@ function saveTasks() {
 
 function createTask(taskText, completed = false) {
 
-    const newTask = document.createElement("li");
-
-
-    // Task Text
+    const newTask =
+        document.createElement("li");
 
     const taskTextElement =
         document.createElement("span");
@@ -114,15 +116,11 @@ function createTask(taskText, completed = false) {
         taskText;
 
 
-    // Delete Button
-
     const deleteButton =
         document.createElement("button");
 
     deleteButton.textContent = "🗑️";
 
-
-    // Delete Task
 
     deleteButton.addEventListener(
         "click",
@@ -133,15 +131,11 @@ function createTask(taskText, completed = false) {
             newTask.remove();
 
             updateTaskCount();
-
             saveTasks();
-
             updateStatistics();
         }
     );
 
-
-    // Complete Task
 
     newTask.addEventListener(
         "click",
@@ -152,24 +146,14 @@ function createTask(taskText, completed = false) {
     );
 
 
-    // Completed State
-
     if (completed) {
 
-        newTask.classList.add(
-            "completed"
-        );
+        newTask.classList.add("completed");
     }
 
 
-    newTask.appendChild(
-        taskTextElement
-    );
-
-    newTask.appendChild(
-        deleteButton
-    );
-
+    newTask.appendChild(taskTextElement);
+    newTask.appendChild(deleteButton);
 
     return newTask;
 }
@@ -186,36 +170,46 @@ function loadTasks() {
             "studytrackTasks"
         );
 
-
     if (!savedTasks) {
+
+        // Convert default HTML tasks
+        // into properly formatted tasks
+        const defaultTasks =
+            Array.from(
+                taskList.querySelectorAll("li")
+            );
+
+        const taskTexts =
+            defaultTasks.map(
+                task => task.textContent
+            );
+
+        taskList.innerHTML = "";
+
+        for (let text of taskTexts) {
+
+            taskList.appendChild(
+                createTask(text)
+            );
+        }
+
+        saveTasks();
 
         return;
     }
 
-
-    // Remove HTML tasks
-
     taskList.innerHTML = "";
-
 
     const tasks =
         JSON.parse(savedTasks);
 
-
     for (let taskData of tasks) {
 
-        const newTask =
-            createTask(
-
-                taskData.text,
-
-                taskData.completed
-
-            );
-
-
         taskList.appendChild(
-            newTask
+            createTask(
+                taskData.text,
+                taskData.completed
+            )
         );
     }
 }
@@ -230,7 +224,6 @@ function completeTask(task) {
     task.classList.toggle(
         "completed"
     );
-
 
     saveTasks();
 
@@ -247,35 +240,25 @@ function addTask() {
     const taskText =
         newTaskInput.value.trim();
 
-
     if (taskText === "") {
 
         return;
     }
 
-
-    const newTask =
-        createTask(taskText);
-
-
     taskList.appendChild(
-        newTask
+        createTask(taskText)
     );
-
 
     newTaskInput.value = "";
 
-
     updateTaskCount();
-
     saveTasks();
-
     updateStatistics();
 }
 
 
 // ================================
-// Study Hours Tracker
+// Study Hours
 // ================================
 
 function addStudyTime() {
@@ -285,47 +268,29 @@ function addStudyTime() {
             studyTimeInput.value
         );
 
-
-    if (
-
-        isNaN(hours) ||
-
-        hours <= 0
-
-    ) {
+    if (isNaN(hours) || hours <= 0) {
 
         return;
     }
 
-
     const currentHours =
         parseFloat(
-
             studyHours.textContent
                 .replace(" hrs", "")
-
         );
-
 
     const totalHours =
         currentHours + hours;
 
-
     studyHours.textContent =
         totalHours + " hrs";
 
-
     localStorage.setItem(
-
         "studytrackStudyHours",
-
         totalHours
-
     );
 
-
     studyTimeInput.value = "";
-
 
     updateStatistics();
 }
@@ -337,7 +302,6 @@ function loadStudyHours() {
         localStorage.getItem(
             "studytrackStudyHours"
         );
-
 
     if (savedHours !== null) {
 
@@ -358,47 +322,29 @@ function addExpense() {
             expenseAmountInput.value
         );
 
-
-    if (
-
-        isNaN(amount) ||
-
-        amount <= 0
-
-    ) {
+    if (isNaN(amount) || amount <= 0) {
 
         return;
     }
 
-
     const currentExpenses =
         parseFloat(
-
             expenses.textContent
                 .replace("₹", "")
-
         );
-
 
     const totalExpenses =
         currentExpenses + amount;
 
-
     expenses.textContent =
         "₹" + totalExpenses;
 
-
     localStorage.setItem(
-
         "studytrackExpenses",
-
         totalExpenses
-
     );
 
-
     expenseAmountInput.value = "";
-
 
     updateStatistics();
 }
@@ -411,7 +357,6 @@ function loadExpenses() {
             "studytrackExpenses"
         );
 
-
     if (savedExpenses !== null) {
 
         expenses.textContent =
@@ -421,8 +366,15 @@ function loadExpenses() {
 
 
 // ================================
-// Goal Progress Tracker
+// Goal Progress
 // ================================
+
+function updateGoalBar(progress) {
+
+    goalBar.style.width =
+        progress + "%";
+}
+
 
 function updateGoal() {
 
@@ -431,36 +383,26 @@ function updateGoal() {
             goalProgressInput.value
         );
 
-
     if (
-
         isNaN(progress) ||
-
         progress < 0 ||
-
         progress > 100
-
     ) {
 
         return;
     }
 
-
     goal.textContent =
         progress + "%";
 
+    updateGoalBar(progress);
 
     localStorage.setItem(
-
         "studytrackGoal",
-
         progress
-
     );
 
-
     goalProgressInput.value = "";
-
 
     updateStatistics();
 }
@@ -473,11 +415,57 @@ function loadGoal() {
             "studytrackGoal"
         );
 
-
     if (savedGoal !== null) {
 
         goal.textContent =
             savedGoal + "%";
+
+        updateGoalBar(
+            parseFloat(savedGoal)
+        );
+    }
+}
+
+
+// ================================
+// Dark Mode
+// ================================
+
+function toggleTheme() {
+
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+    const isDark =
+        document.body.classList.contains(
+            "dark-mode"
+        );
+
+    localStorage.setItem(
+        "studytrackTheme",
+        isDark ? "dark" : "light"
+    );
+
+    themeToggle.textContent =
+        isDark ? "☀️" : "🌙";
+}
+
+
+function loadTheme() {
+
+    const savedTheme =
+        localStorage.getItem(
+            "studytrackTheme"
+        );
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+        themeToggle.textContent = "☀️";
     }
 }
 
@@ -491,22 +479,24 @@ addTaskButton.addEventListener(
     addTask
 );
 
-
 addStudyTimeButton.addEventListener(
     "click",
     addStudyTime
 );
-
 
 addExpenseButton.addEventListener(
     "click",
     addExpense
 );
 
-
 updateGoalButton.addEventListener(
     "click",
     updateGoal
+);
+
+themeToggle.addEventListener(
+    "click",
+    toggleTheme
 );
 
 
@@ -522,9 +512,11 @@ loadExpenses();
 
 loadGoal();
 
+loadTheme();
+
 
 // ================================
-// Initial Dashboard Update
+// Initial Updates
 // ================================
 
 updateTaskCount();

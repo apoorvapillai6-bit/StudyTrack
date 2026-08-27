@@ -13,13 +13,22 @@
 <body>
 
     <header>
-        <h1>StudyTrack</h1>
-        <p>Your personal productivity dashboard</p>
+        <div class="header-content">
+            <div>
+                <h1>📚 StudyTrack</h1>
+                <p>Organize. Study. Achieve.</p>
+            </div>
+
+            <button id="theme-toggle" aria-label="Toggle dark mode">
+                🌙
+            </button>
+        </div>
     </header>
+
 
     <main>
 
-        <!-- Dashboard Cards -->
+        <!-- Dashboard -->
         <section class="dashboard">
 
             <div class="card">
@@ -40,12 +49,16 @@
             <div class="card">
                 <h2>🎯 Goal</h2>
                 <p id="goal">0%</p>
+
+                <div class="progress-bar">
+                    <div id="goal-bar" class="progress-fill"></div>
+                </div>
             </div>
 
         </section>
 
 
-        <!-- Study Hours Tracker -->
+        <!-- Study Tracker -->
         <section class="study-tracker">
 
             <h2>📚 Track Study Time</h2>
