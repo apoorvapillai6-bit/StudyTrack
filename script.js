@@ -9,6 +9,9 @@ const addTaskButton = document.getElementById("add-task");
 const studyHours = document.getElementById("study-hours");
 const studyTimeInput = document.getElementById("study-time");
 const addStudyTimeButton = document.getElementById("add-study-time");
+const expenses = document.getElementById("expenses");
+const expenseAmountInput = document.getElementById("expense-amount");
+const addExpenseButton = document.getElementById("add-expense");
 
 // ================================
 // Save tasks to localStorage
@@ -241,3 +244,39 @@ function loadStudyHours() {
 loadStudyHours();
 
 addStudyTimeButton.addEventListener("click", addStudyTime);
+// ================================
+// Expense Tracker
+// ================================
+
+function addExpense() {
+
+    const amount = parseFloat(expenseAmountInput.value);
+
+    if (isNaN(amount) || amount <= 0) {
+        return;
+    }
+
+    const currentExpenses = parseFloat(
+        expenses.textContent.replace("₹", "")
+    );
+
+    const totalExpenses = currentExpenses + amount;
+
+    expenses.textContent = "₹" + totalExpenses;
+
+    // Save expenses
+    localStorage.setItem("studytrackExpenses", totalExpenses);
+
+    expenseAmountInput.value = "";
+}
+function loadExpenses() {
+
+    const savedExpenses = localStorage.getItem("studytrackExpenses");
+
+    if (savedExpenses) {
+        expenses.textContent = "₹" + savedExpenses;
+    }
+}
+
+loadExpenses();
+addExpenseButton.addEventListener("click", addExpense);
